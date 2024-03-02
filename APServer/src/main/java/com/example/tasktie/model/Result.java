@@ -1,0 +1,9 @@
+package com.example.tasktie.model;
+
+import lombok.Data;
+
+@Data
+public class Result {
+    private Integer result;
+    private String message;
+}
