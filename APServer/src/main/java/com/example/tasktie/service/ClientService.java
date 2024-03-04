@@ -1,6 +1,7 @@
 package com.example.tasktie.service;
 
 import com.example.tasktie.model.Client;
+import com.example.tasktie.model.ClientRequest;
 import com.example.tasktie.model.Result;
 import com.example.tasktie.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,15 @@ public class ClientService {
     @Autowired
     ClientRepository clientRepository;
 
-    public List<Client> getClientList(){
+    /**
+     * 顧客の名前がリクエストに含まれているとき、検索を行う
+     * @return clientList
+     */
+    public List<Client> getClientList(ClientRequest request){
+        if (request.getClientName() == null || request.getClientName().isEmpty()){
+            return clientRepository.getClientAll();
+        }
+        System.out.println("search");
         return clientRepository.getClientAll();
     }
     public Result saveClient(Client client){

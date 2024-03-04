@@ -2,6 +2,7 @@ package com.example.tasktie.controller;
 
 
 import com.example.tasktie.model.Client;
+import com.example.tasktie.model.ClientRequest;
 import com.example.tasktie.model.Result;
 import com.example.tasktie.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +16,12 @@ public class ClientController {
     @Autowired
     ClientService clientService;
 
-    @GetMapping
-    public List<Client> getClientList(){
-        return clientService.getClientList();
+    @PostMapping("/get")
+    public List<Client> getClientList(@RequestBody ClientRequest clientRequest){
+        return clientService.getClientList(clientRequest);
     }
 
-    @PostMapping
+    @PostMapping("/post")
     public Result saveClient(@RequestBody Client client){
         return clientService.saveClient(client);
     }
